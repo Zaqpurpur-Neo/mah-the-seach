@@ -1,0 +1,12 @@
+﻿<Application x:Class="nah_the_search.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:nah_the_search"
+	StartupUri="MainWindow.xaml"
+	ThemeMode="System"
+	ShutdownMode="OnExplicitShutdown"
+	>
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>
