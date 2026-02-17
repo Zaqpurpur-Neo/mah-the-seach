@@ -1,6 +1,6 @@
 using System.Windows;
 
-namespace raycast_copy.interfaces;
+namespace nah_the_search.interfaces;
 
 public interface IVisibilityPanel {
 	public string ViewName { get; }

@@ -92,8 +92,6 @@ int wmain() {
     ULONG_PTR gdiToken;
     Gdiplus::GdiplusStartup(&gdiToken, &gdiInput, nullptr);
 
-    fs::create_directories("Tools/icons");
-
     std::vector<ShortcutInfo> apps;
 
     std::vector<fs::path> roots = {

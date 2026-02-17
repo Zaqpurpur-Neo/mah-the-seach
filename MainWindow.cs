@@ -36,6 +36,13 @@ public partial class MainWindow : Window {
 		InitializeComponent();
 		Loaded += OnLoaded;
 
+		if(DataContext is MainViewModel mvm) {
+			mvm.RequestClose += () => {
+				hotkey.Dispose();
+				Application.Current.Shutdown();
+			};
+		}
+
     }
 
 	private void ToggleWindow() {

@@ -5,6 +5,7 @@
 		<TargetFramework>net9.0-windows</TargetFramework>
 		<RootNamespace>nah_the_search</RootNamespace>
 		<Nullable>enable</Nullable>
+		<NoWarn>nullable</NoWarn>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<UseWPF>true</UseWPF>
     </PropertyGroup>
@@ -13,6 +14,6 @@
 	  <Content Include="Tools\**\*">
 		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Content>
-	</ItemGroup>
+  </ItemGroup>
 
 </Project>

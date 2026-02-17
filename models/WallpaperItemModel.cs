@@ -3,9 +3,9 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 
-using raycast_copy.utils;
+using nah_the_search.utils;
 
-namespace raycast_copy.models;
+namespace nah_the_search.models;
 
 public class WallpaperItemModel : INotifyPropertyChanged {
     public string Path { get; }

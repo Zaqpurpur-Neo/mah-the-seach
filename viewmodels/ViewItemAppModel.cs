@@ -12,18 +12,17 @@ using System.Diagnostics;
 using System.Collections.Generic;
 
 using System.Text.Json;
-using raycast_copy.models;
-using raycast_copy.models;
-using raycast_copy.interfaces; 
+using nah_the_search.models;
+using nah_the_search.interfaces; 
 
-namespace raycast_copy.viewmodels;
+namespace nah_the_search.viewmodels;
 
 public class ViewItemAppModel : INotifyPropertyChanged, IVisibilityPanel {
 	public string ViewName { get => "ListView_Applications"; }
 
 	private string basedir { get => AppContext.BaseDirectory; }
 	private string toolsPath { get => System.IO.Path.Combine(basedir, "Tools"); }
-	private string dataJson { get => System.IO.Path.Combine(toolsPath, "apps.json"); }
+	public string dataJson { get => System.IO.Path.Combine(toolsPath, "apps.json"); }
 
 	private class AppWrapperModel {
 		public List<JsonAppModel>? apps { get; set; }

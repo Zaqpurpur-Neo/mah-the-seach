@@ -7,15 +7,15 @@ public class CommandList {
 	private Dictionary<string, CommandItem> commandList { get; set; } = new Dictionary<string, CommandItem>();
 	private string DefaultCommand { get; } = "__action_hidden__default_command_action_001";
 
-	public void addDefaultCommand(Action action) {
+	public void addDefaultCommand(Action<string> action) {
 		commandList[DefaultCommand] = new CommandItem(DefaultCommand, action);
 	}
 
-	public void addCommand(string commandName, Action action) {
+	public void addCommand(string commandName, Action<string> action) {
 		commandList[commandName] = new CommandItem(commandName, action);
 	}
 
-	public void addCommand(string commandName, Action action, Action<string> searchAction) {
+	public void addCommand(string commandName, Action<string> action, Action<string> searchAction) {
 		commandList[commandName] = new CommandItem(commandName, action, true, searchAction);
 	}
 

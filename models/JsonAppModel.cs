@@ -1,4 +1,4 @@
-namespace raycast_copy.models;
+namespace nah_the_search.models;
 
 public class JsonAppModel {
 	public string? name { get; set; }

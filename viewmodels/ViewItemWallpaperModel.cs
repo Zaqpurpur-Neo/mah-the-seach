@@ -20,7 +20,8 @@ namespace nah_the_search.viewmodels;
 public class ViewItemWallpaperModel : INotifyPropertyChanged, IVisibilityPanel {
 	public string ViewName { get => "ListView_Wallpaper"; }
 
-	public string wallpaperPath { get; } = @"C:\Users\Vincent\Pictures\Wallpaper";
+	public string wallpaperPath { get; } = 
+		Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures), "Wallpaper");
 
 	public ObservableCollection<WallpaperItemModel> wallpaperItems { get; } = new ObservableCollection<WallpaperItemModel>();
 	public ICollectionView itemsView { get; }
