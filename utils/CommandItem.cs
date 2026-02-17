@@ -1,4 +1,5 @@
 using System;
+using System.Windows;
 
 namespace nah_the_search.utils;
 
@@ -21,7 +22,9 @@ public class CommandItem {
 		 this.IsSearchable = IsSearchable;
 	 }
 
-	 public CommandItem(string CommandName, Action<string> action, bool IsSearchable, Action<string> searchableActionArg) {
+	 public CommandItem(string CommandName, Action<string> action, 
+			 bool IsSearchable, Action<string> searchableAction) {
+
 		 this.CommandName = CommandName;
 		 this.action = action;
 		 this.IsSearchable = IsSearchable;

@@ -23,6 +23,7 @@ public class MainViewModel : INotifyPropertyChanged {
 	public ViewItemWallpaperModel ItemWallpaperView { get; } = new ViewItemWallpaperModel();
 
 	public IVisibilityPanel? visibleElement { get; set; }
+	public CancellationTokenSource? _typingCts;
 
 	public CommandList commandList { get; } = new CommandList();
 	public CommandItem? selectedCommand { get; set; }
@@ -89,7 +90,7 @@ public class MainViewModel : INotifyPropertyChanged {
 				if(chromeItem != null) {
 					Process.Start(new ProcessStartInfo {
 						FileName = chromeItem.lnkPath,
-						Arguments = paramater,
+						Arguments = googleUrl,
 						UseShellExecute = true
 					});			
 				}
@@ -120,6 +121,8 @@ public class MainViewModel : INotifyPropertyChanged {
 				}
 			},
 			(name) => {
+				if(string.IsNullOrEmpty(name)) return;
+
 				if(visibleElement == FilteredItemAppView) 
 					FilteredItemAppView.filterText = name;
 			}
@@ -141,15 +144,36 @@ public class MainViewModel : INotifyPropertyChanged {
 	}
 
 	private void TextChangedCommand(string text) {
-		if(globalText.StartsWith("/")) {
-			string[] args = text.Split(' ');
-			if(selectedCommand != null) {
-				if(args.Length > 0) {
-					string resultValue = String.Join(" ", args[1..]);
+		if(selectedCommand != null) {
+			if(!selectedCommand.IsSearchable) return;
+
+			if(globalText.StartsWith("/")) {
+				int space = text.IndexOf(' ');
+				if(text.Trim().Length > selectedCommand.CommandName.Length) {
+					string resultValue = space > -1 ? text.Trim()[(space + 1)..] : "";
 					selectedCommand.Search(resultValue);
 				}
+
+				if(selectedCommand.CommandName != text[..(space + 1)].Trim()) {
+					selectedCommand = null;
+					commandList.getDefaultCommand().Execute("");
+				}
 			};
+
+
 		}
+	}
+
+	private async void DebounceTextChanged(string name) {
+		_typingCts.Cancel();
+		_typingCts = new CancellationTokenSource();
+		var token = _typingCts.Token;
+
+		try {
+        	await Task.Delay(250, token);
+        	TextChangedCommand(name);
+    	}
+    	catch (TaskCanceledException) { }
 	}
 
 	public event PropertyChangedEventHandler PropertyChanged;
